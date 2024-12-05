@@ -8392,6 +8392,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1492810587}
+  - {fileID: 2142999611}
   - {fileID: 519420032}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8410,6 +8411,7 @@ MonoBehaviour:
   moveSpeed: 10
   jumpForce: 13
   groundCheck: {fileID: 1492810587}
+  ScoreGroundCheck: {fileID: 2142999611}
   groundCheckRadius: 0.0001
   groundLayer:
     serializedVersion: 2
@@ -8419,6 +8421,7 @@ MonoBehaviour:
   scoreText: {fileID: 1151945146}
   startScoreText: {fileID: 919494211}
   startCanvas: {fileID: 1168977696}
+  timerText: {fileID: 0}
 --- !u!61 &1459649830
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13239,6 +13242,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &2142999610
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2142999611}
+  m_Layer: 0
+  m_Name: Score ground checker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2142999611
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2142999610}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.39, y: -1.12, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1459649828}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2147321698
 GameObject:
   m_ObjectHideFlags: 0

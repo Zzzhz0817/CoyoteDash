@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.UI; // Required for UI elements
+using UnityEngine.UI;
 
 public class CoyoteController : MonoBehaviour
 {
@@ -9,6 +9,7 @@ public class CoyoteController : MonoBehaviour
 
     [Header("Ground Check")]
     public Transform groundCheck;
+    public Transform ScoreGroundCheck;
     public float groundCheckRadius = 0.0001f;
     public LayerMask groundLayer;
 
@@ -20,6 +21,7 @@ public class CoyoteController : MonoBehaviour
     public Text scoreText; // Reference to the UI Text for displaying the score
     public Text startScoreText; // Reference to the Start Score Text
     public GameObject startCanvas; // Reference to the Start Canvas
+    public Text timerText; // Reference to the UI Text for displaying the timer
 
     private Rigidbody2D rb;
     private bool isGrounded;
@@ -28,6 +30,9 @@ public class CoyoteController : MonoBehaviour
     private int score = 0; // Player's score
     private Vector3 originalPosition; // Player's starting position
     private bool isPaused = true; // Game starts in paused state
+
+    private float timer = 180f; // 3-minute timer in seconds
+    private bool timerStarted = false; // Tracks if the timer has started
 
     private void Start()
     {
@@ -38,12 +43,12 @@ public class CoyoteController : MonoBehaviour
         // Record the original starting position
         originalPosition = transform.position;
 
-        // Initialize the score display
-        //UpdateScoreText();
-
         // Pause the game and enable the Start Canvas
         PauseGame();
         startCanvas.SetActive(true);
+
+        // Initialize the timer display
+        UpdateTimerText();
     }
 
     private void Update()
@@ -57,6 +62,25 @@ public class CoyoteController : MonoBehaviour
 
         // Skip the rest of the logic if the game is paused
         if (isPaused) return;
+
+        // Start the timer when player position.x > 42
+        if (!timerStarted && transform.position.x > 42f)
+        {
+            timerStarted = true;
+        }
+
+        // Count down the timer if it has started
+        if (timerStarted)
+        {
+            timer -= Time.deltaTime;
+            UpdateTimerText();
+
+            // Check if the timer has run out
+            if (timer <= 0)
+            {
+                TimerEnd();
+            }
+        }
 
         // Handle Ground Check
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
@@ -102,7 +126,7 @@ public class CoyoteController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // Check if the player collides with a platform
-        if (collision.gameObject.CompareTag("Platform"))
+        if (collision.gameObject.CompareTag("Platform") && Physics2D.OverlapCircle(ScoreGroundCheck.position, groundCheckRadius, groundLayer))
         {
             score++; // Increment the score
             UpdateScoreText(); // Update the UI
@@ -124,6 +148,25 @@ public class CoyoteController : MonoBehaviour
         }
     }
 
+    private void UpdateTimerText()
+    {
+        // Update the timer display on the UI
+        if (timerText != null)
+        {
+            int minutes = Mathf.FloorToInt(timer / 60f);
+            int seconds = Mathf.FloorToInt(timer % 60f);
+            timerText.text = $"Time Left: {minutes:00}:{seconds:00}";
+        }
+    }
+
+    private void TimerEnd()
+    {
+        // Actions to perform when the timer ends
+        timerStarted = false;
+        Debug.Log("Timer ended!");
+        // Add logic for when the timer ends, e.g., show game over screen
+    }
+
     private void ResetPlayerPosition()
     {
         // Reset the player's position and velocity
@@ -138,6 +181,11 @@ public class CoyoteController : MonoBehaviour
         // Pause the game and show the Start Canvas
         PauseGame();
         startCanvas.SetActive(true);
+
+        // Reset the timer
+        timer = 180f;
+        timerStarted = false;
+        UpdateTimerText();
     }
 
     private void PauseGame()
@@ -159,6 +207,12 @@ public class CoyoteController : MonoBehaviour
         {
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+        }
+
+        if (ScoreGroundCheck != null)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(ScoreGroundCheck.position, groundCheckRadius);
         }
     }
 }
