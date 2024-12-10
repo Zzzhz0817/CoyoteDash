@@ -18,12 +18,17 @@ public class PlatformGenerator : MonoBehaviour
     public float initialX = 42f; // Starting X coordinate for the first platform
     public float yPosition = -3f; // Fixed Y coordinate for all platforms
 
+    public System.Collections.Generic.List<float> platformEndpoints = new System.Collections.Generic.List<float>(); // List to store platform endpoints
+
     private float nextPlatformX; // The X coordinate to place the next platform
 
     private void Start()
     {
         // Initialize the starting position for the first platform
         nextPlatformX = initialX;
+        
+        // Add the initial X to platformEndpoints
+        platformEndpoints.Add(initialX);
     }
 
     private void Update()
@@ -50,5 +55,8 @@ public class PlatformGenerator : MonoBehaviour
 
         // Update the next platform X position
         nextPlatformX = platformX + selectedPlatform.backwardLength;
+
+        // Add the new endpoint to platformEndpoints
+        platformEndpoints.Add(nextPlatformX);
     }
 }

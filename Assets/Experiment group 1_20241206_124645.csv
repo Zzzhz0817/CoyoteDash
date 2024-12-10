@@ -1,0 +1,4 @@
+DeviceName,Timestamp,Timer,IsSuccess,DistanceToNext,DistanceToPrevious,GroupName
+ZZZHZ,2024-12-06 12:46:50,0.8216776,True,0.04784012,-1,Experiment group 1
+ZZZHZ,2024-12-06 12:46:52,2.59414,True,0.2477722,17.55223,Experiment group 1
+ZZZHZ,2024-12-06 12:46:54,4.893448,True,0.04803467,22.75196,Experiment group 1

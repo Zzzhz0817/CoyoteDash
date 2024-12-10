@@ -8387,7 +8387,7 @@ Transform:
   m_GameObject: {fileID: 1459649825}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.22, y: -2.96, z: 0}
+  m_LocalPosition: {x: -1.244, y: -2.96, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8422,6 +8422,7 @@ MonoBehaviour:
   startScoreText: {fileID: 919494211}
   startCanvas: {fileID: 1168977696}
   timerText: {fileID: 0}
+  groupName: Experiment group 2
 --- !u!61 &1459649830
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9815,20 +9816,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   platforms:
-  - prefab: {fileID: 6573117230347813716, guid: 711284b8d4481b24fb48d4742edce84b, type: 3}
+  - prefab: {fileID: 1533695422090262248, guid: f67904e40796a22449daba10b43e3a23, type: 3}
     forwardLength: 6
-    backwardLength: 6
-  - prefab: {fileID: 2530772632050429055, guid: 139963ee3e3b83942b435693813c1a26, type: 3}
+    backwardLength: 7
+  - prefab: {fileID: 5869147057396720062, guid: f8aae67ded2c251419700e895c18045c, type: 3}
     forwardLength: 6
-    backwardLength: 3
-  - prefab: {fileID: 8136047653772484060, guid: 6ef2dd9581d33e7418a62d048eba3eaf, type: 3}
+    backwardLength: 4
+  - prefab: {fileID: 2545614291433633805, guid: ab13628fdd027e340b1ff0728e7274a7, type: 3}
     forwardLength: 1
-    backwardLength: 6
+    backwardLength: 7
   player: {fileID: 1459649828}
   generateDistance: 20
-  gapDistance: 10
+  gapDistance: 9.8
   initialX: 42
   yPosition: -3
+  platformEndpoints: []
 --- !u!4 &1605078804
 Transform:
   m_ObjectHideFlags: 0
@@ -12561,7 +12563,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Control Group
+  m_Text: Experiment group 2
 --- !u!222 &1969607980
 CanvasRenderer:
   m_ObjectHideFlags: 0
